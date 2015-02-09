@@ -1,0 +1,8 @@
+/lib
+/*.iml
+/.idea/*
+.DS_Store
+/*/*.iml
+/target/
+/*/target/
+/atlassian-ide-plugin.xml
