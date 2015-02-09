@@ -1,4 +1,4 @@
-package de.fun.nomster.model;
+package com.github.skare69.nomster.model;
 
 /**
  * Model for Nomster Suggestion attendees.

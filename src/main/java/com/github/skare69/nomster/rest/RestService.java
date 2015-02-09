@@ -1,7 +1,7 @@
-package de.fun.nomster.rest;
+package com.github.skare69.nomster.rest;
 
-import de.fun.nomster.model.Attendee;
-import de.fun.nomster.model.Suggestion;
+import com.github.skare69.nomster.model.Suggestion;
+import com.github.skare69.nomster.model.Attendee;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
