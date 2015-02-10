@@ -1,7 +1,7 @@
 package com.github.skare69.nomster.model;
 
 /**
- * Model for Nomster Suggestion attendees.
+ * Model for Nomster {@link com.github.skare69.nomster.model.Suggestion} attendees.
  * <p/>
  * User: dominik.heimstaedt
  * Date: 05.02.2015
