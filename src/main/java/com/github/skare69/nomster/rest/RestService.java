@@ -1,7 +1,7 @@
 package com.github.skare69.nomster.rest;
 
-import com.github.skare69.nomster.model.Suggestion;
-import com.github.skare69.nomster.model.Attendee;
+import com.github.skare69.nomster.entity.Suggestion;
+import com.github.skare69.nomster.entity.Attendee;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -34,7 +34,6 @@ public class RestService
         Suggestion suggestion = new Suggestion();
         suggestion.setName("Dönerstag!");
         suggestion.setDescription("Auf gehts!");
-        suggestion.setAttendees(attendees);
         return suggestion;
     }
 }
