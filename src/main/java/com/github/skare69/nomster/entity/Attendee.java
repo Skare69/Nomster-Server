@@ -4,7 +4,9 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.Collection;
 
 /**
  * Model for Nomster {@link com.github.skare69.nomster.entity.Suggestion} attendees.
@@ -19,6 +21,7 @@ public class Attendee
 {
     private int idAttendee;
     private String name;
+    private Collection<AttendeeSuggestionSubscription> attendeeSuggestionSubscriptions;
 
     @Id
     @Column(name = "id_attendee", nullable = false, insertable = true, updatable = true)
@@ -44,16 +47,25 @@ public class Attendee
         this.name = name;
     }
 
+    @OneToMany(mappedBy = "attendee")
+    public Collection<AttendeeSuggestionSubscription> getAttendeeSuggestionSubscriptions()
+    {
+        return attendeeSuggestionSubscriptions;
+    }
+
+    public void setAttendeeSuggestionSubscriptions(Collection<AttendeeSuggestionSubscription> attendeeSuggestionSubscriptions)
+    {
+        this.attendeeSuggestionSubscriptions = attendeeSuggestionSubscriptions;
+    }
+
     @Override
     public boolean equals(Object o)
     {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || !(o instanceof Attendee)) return false;
 
-        Attendee attendee = (Attendee)o;
-
-        if (!name.equals(attendee.name)) return false;
-
+        Attendee that = (Attendee)o;
+        if (!name.equals(that.getName())) return false;
         return true;
     }
 

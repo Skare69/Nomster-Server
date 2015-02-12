@@ -4,8 +4,10 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.security.Timestamp;
+import java.util.Collection;
 
 /**
  * Model for the Nomster entity nomster.suggestion.
@@ -25,6 +27,7 @@ public class Suggestion
     private Float longitude;
     private byte[] image;
     private Timestamp date;
+    private Collection<AttendeeSuggestionSubscription> attendeeSuggestionSubscriptions;
 
     @Id
     @Column(name = "id_suggestion", nullable = false, insertable = true, updatable = true)
@@ -110,20 +113,29 @@ public class Suggestion
         this.date = date;
     }
 
+    @OneToMany(mappedBy = "suggestion")
+    public Collection<AttendeeSuggestionSubscription> getAttendeeSuggestionSubscriptions()
+    {
+        return attendeeSuggestionSubscriptions;
+    }
+
+    public void setAttendeeSuggestionSubscriptions(Collection<AttendeeSuggestionSubscription> attendeeSuggestionSubscriptions)
+    {
+        this.attendeeSuggestionSubscriptions = attendeeSuggestionSubscriptions;
+    }
+
     @Override
     public boolean equals(Object o)
     {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || !(o instanceof Suggestion)) return false;
 
         Suggestion that = (Suggestion)o;
-
-        if (!date.equals(that.date)) return false;
-        if (description != null ? !description.equals(that.description) : that.description != null) return false;
-        if (latitude != null ? !latitude.equals(that.latitude) : that.latitude != null) return false;
-        if (longitude != null ? !longitude.equals(that.longitude) : that.longitude != null) return false;
-        if (!name.equals(that.name)) return false;
-
+        if (!date.equals(that.getDate())) return false;
+        if (description != null ? !description.equals(that.getDescription()) : that.getDescription() != null) return false;
+        if (latitude != null ? !latitude.equals(that.getLatitude()) : that.getLatitude() != null) return false;
+        if (longitude != null ? !longitude.equals(that.getLongitude()) : that.getLongitude() != null) return false;
+        if (!name.equals(that.getName())) return false;
         return true;
     }
 

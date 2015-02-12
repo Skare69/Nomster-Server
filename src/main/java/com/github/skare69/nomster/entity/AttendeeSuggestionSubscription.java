@@ -4,6 +4,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,6 +21,8 @@ public class AttendeeSuggestionSubscription
     private int idAttendeeSuggestionSubscription;
     private int idSuggestion;
     private int idAttendee;
+    private Attendee attendee;
+    private Suggestion suggestion;
 
     @Id
     @Column(name = "id_attendee_suggestion_subscription", nullable = false, insertable = true, updatable = true)
@@ -57,25 +60,45 @@ public class AttendeeSuggestionSubscription
         this.idAttendee = idAttendee;
     }
 
+    @ManyToOne
+    public Attendee getAttendee()
+    {
+        return attendee;
+    }
+
+    public void setAttendee(Attendee attendee)
+    {
+        this.attendee = attendee;
+    }
+
+    @ManyToOne
+    public Suggestion getSuggestion()
+    {
+        return suggestion;
+    }
+
+    public void setSuggestion(Suggestion suggestion)
+    {
+        this.suggestion = suggestion;
+    }
+
     @Override
     public boolean equals(Object o)
     {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || !(o instanceof AttendeeSuggestionSubscription)) return false;
 
         AttendeeSuggestionSubscription that = (AttendeeSuggestionSubscription)o;
-
-        if (idAttendee != that.idAttendee) return false;
-        if (idSuggestion != that.idSuggestion) return false;
-
+        if (idAttendee != that.getIdAttendee()) return false;
+        if (idSuggestion != that.getIdSuggestion()) return false;
         return true;
     }
 
     @Override
     public int hashCode()
     {
-        int result = idSuggestion;
-        result = 31 * result + idAttendee;
+        int result = suggestion.hashCode();
+        result = 31 * result + attendee.hashCode();
         return result;
     }
 }
