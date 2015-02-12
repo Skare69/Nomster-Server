@@ -30,15 +30,17 @@ public class RestService
     public Suggestion test()
     {
         List<Attendee> attendees = new LinkedList<>();
-        Attendee tobbo = new Attendee();
-        tobbo.setName("Tobbo");
-        attendees.add(tobbo);
-        Attendee domi = new Attendee();
-        domi.setName("Domi");
-        attendees.add(domi);
+        Attendee personA = new Attendee();
+        personA.setName("Person A");
+        attendees.add(personA);
+        Attendee personB = new Attendee();
+        personB.setName("Person B");
+        attendees.add(personB);
         Suggestion suggestion = new Suggestion();
-        suggestion.setName("Dönerstag!");
-        suggestion.setDescription("Auf gehts!");
+        suggestion.setName("Moa meat!");
+        suggestion.setDescription("Wanna eat some sandwiches?");
+        suggestion.setLatitude(40.722196f);
+        suggestion.setLongitude(-73.987429f);
         return suggestion;
     }
 
