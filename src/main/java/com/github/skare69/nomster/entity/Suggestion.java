@@ -4,9 +4,11 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.security.Timestamp;
+import java.util.Calendar;
 import java.util.Collection;
 
 /**
@@ -18,6 +20,12 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "suggestion", schema = "nomster", catalog = "")
+@NamedQueries({
+        @NamedQuery(name = "Suggestion.loadCurrentSuggestions", query = "" +
+                "select suggestion " +
+                "from Suggestion suggestion " +
+                "where suggestion.date >= current_date")
+})
 public class Suggestion
 {
     private int idSuggestion;
@@ -26,7 +34,7 @@ public class Suggestion
     private Float latitude;
     private Float longitude;
     private byte[] image;
-    private Timestamp date;
+    private Calendar date;
     private Collection<AttendeeSuggestionSubscription> attendeeSuggestionSubscriptions;
 
     @Id
@@ -103,12 +111,12 @@ public class Suggestion
 
     @Basic
     @Column(name = "date", nullable = false, insertable = true, updatable = true)
-    public Timestamp getDate()
+    public Calendar getDate()
     {
         return date;
     }
 
-    public void setDate(Timestamp date)
+    public void setDate(Calendar date)
     {
         this.date = date;
     }

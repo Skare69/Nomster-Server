@@ -2,7 +2,9 @@ package com.github.skare69.nomster.rest;
 
 import com.github.skare69.nomster.entity.Suggestion;
 import com.github.skare69.nomster.entity.Attendee;
+import com.github.skare69.nomster.service.SuggestionService;
 
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -19,6 +21,9 @@ import java.util.List;
 @Path("/")
 public class RestService
 {
+    @Inject
+    SuggestionService suggestionService;
+
     @GET
     @Path("test")
     @Produces({"application/json"})
@@ -35,5 +40,13 @@ public class RestService
         suggestion.setName("Dönerstag!");
         suggestion.setDescription("Auf gehts!");
         return suggestion;
+    }
+
+    @GET
+    @Path("suggestion")
+    @Produces({"application/json"})
+    public List<Suggestion> loadCurrentSuggestions()
+    {
+        return suggestionService.getCurrentSuggestions();
     }
 }
