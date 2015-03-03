@@ -105,6 +105,9 @@
             <id>local.nomster.deploy</id>
             <properties>
                 <skip-nomster-deploy>false</skip-nomster-deploy>
+                <as-hostname>localhost</as-hostname>
+                <as-username>admin</as-username>
+                <as-password>test</as-password>
             </properties>
         </profile>
     </profiles>
