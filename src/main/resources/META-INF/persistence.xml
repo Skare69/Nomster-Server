@@ -11,7 +11,7 @@
             <property name="hibernate.connection.username" value="sa" />
             <property name="hibernate.connection.password" value="sa" />
             <property name="connection.url" value="jdbc:h2:mem:test" />
-            <property name="connection.driver_class" value="org.hsqldb.jdbcDriver" />
+            <property name="connection.driver_class" value="org.h2.Driver" />
         </properties>
     </persistence-unit>
 </persistence>
